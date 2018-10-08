@@ -6,7 +6,7 @@ public class User
 {
 	protected int ID;
 	protected String name, email, password;
-	protected boolean loggedIn, adminStatus;
+	protected boolean loggedIn;
 	boolean login(String username, String password)
 	{
 		if(username == email && password == this.password)
@@ -57,9 +57,5 @@ public class User
 	boolean isLoggedIn()
 	{
 		return loggedIn;
-	}
-	boolean isAdmin()
-	{
-		return adminStatus;
 	}
 }

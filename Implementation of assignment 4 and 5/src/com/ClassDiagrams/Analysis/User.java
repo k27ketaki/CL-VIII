@@ -4,7 +4,7 @@ public abstract class User
 {
 	private int ID;
 	private String name, email, password;
-	private boolean loggedIn, adminStatus;
+	private boolean loggedIn;
     abstract boolean login(String username, String password);
     abstract void logout();
     abstract int getID();
