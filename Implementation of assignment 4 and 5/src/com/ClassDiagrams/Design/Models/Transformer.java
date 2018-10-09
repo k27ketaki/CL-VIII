@@ -1,16 +1,14 @@
-package com.ClassDiagrams.Design;
+package com.ClassDiagrams.Design.Models;
 
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Transformer
 {
-	int ID;
-	String name;
+	private int ID;
+	private String name;
 	private float kVA, load;
 	private boolean status;
 	private double latitude, longitude;
-	private LinkedList<Connection> connections;
 	public Transformer(int ID, String name, float kVA, double latitude,double longitude)
 	{
 		this.ID = ID;
@@ -20,42 +18,13 @@ public class Transformer
 		status = true;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		connections = new LinkedList<Connection>();
-	}
-	void removeConnection(Connection connection, float buildingLoad)
-	{
-		if(connection.getStatus() == true)
-			setLoad(getLoad() - buildingLoad);
-		connections.remove(connection);
-	}
-	void addConnection(Connection connection, float buildingLoad)
-	{
-		if(!connections.contains(connection))
-		{
-			if(connection.getStatus() == true)
-				setLoad(getLoad() + buildingLoad);
-			connections.add(connection);
-		}
-	}
-	void restore()
-	{
-		for (int cnt = 0; cnt < connections.size(); cnt++)
-		{
-			Connection conn = connections.get(cnt);
-			Building building = conn.getBuilding();
-			building.changeTransformer(this);
-		}
 	}
 	void toggle()
 	{
-		if(status == true)
+		if(status)
 			status = false;
-		// What will happen to it's connections?
 		else
-		{
 			status = true;
-			restore();
-		}
 	}
 	void modify()
 	{
@@ -91,4 +60,10 @@ public class Transformer
 	{
 		load = newLoad;
 	}
+
+	@Override
+	public String toString() {
+		return "["+name+":"+kVA+"]";
+	}
 }
+
